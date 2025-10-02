@@ -4,26 +4,31 @@ import java.util.HashSet;
 
 public class Mozo extends Persona {
 
-	private HashSet<Mesa> mesa;
+	private HashSet<Mesa> mesas;
 	private String turno;
 
 	public Mozo(String nombre, Integer dni, String turno) {
 		super(nombre, dni);
-	this.mesa = new HashSet<>();
+	this.mesas = new HashSet<>();
 	this.turno = turno;
 	}
 
 
+	public void agregarMesa(Mesa mesa) {
+		this.mesas.add(mesa);
 
-	public void setMesa(HashSet<Mesa> mesa) {
-		this.mesa = mesa;
+	}
+	
+
+	public HashSet<Mesa> getMesas() {
+		return mesas;
 	}
 
 
 
 	@Override
 	public String toString() {
-		return "Mozo [mesa=" + mesa + ", getDni()=" + getDni() ;
+		return "Mozo [mesa=" + mesas + ", getDni()=" + getDni() ;
 		}
 
 

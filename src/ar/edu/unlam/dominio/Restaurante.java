@@ -1,42 +1,49 @@
 package ar.edu.unlam.dominio;
 
-
 import java.util.HashSet;
 
 public class Restaurante {
 
 	private HashSet<Mozo> mozos;
 	private HashSet<Mesa> mesas;
+	private HashSet<Cliente> clientes;
+	private HashSet<Pedido> pedidos;
 
 	public Restaurante() {
 		mozos = new HashSet<Mozo>();
 		mesas = new HashSet<>();
+		clientes = new HashSet<>();
+		pedidos = new HashSet<>();
 	}
 
-	public void agregarMozo(Mozo mozo) {
-		this.mozos.add(mozo);
-
-	}
-	public void agregarMesa(Mesa mesa) {
-		this.mesas.add(mesa);
-
+	public Boolean agregarMozo(Mozo mozo) {
+		return this.mozos.add(mozo);
 	}
 
-	public void asignarMesaAMozo(Integer dniMozo, Integer numeroMesa) {
+	public Boolean agregarMesa(Mesa mesa) {
+		return this.mesas.add(mesa);
+	}
+
+	public Boolean agregarCliente(Cliente cliente) {
+		return this.clientes.add(cliente);
+	}
+
+	public Boolean agregarPedido(Pedido pedido) {
+		return this.pedidos.add(pedido);
+	}
+	public Boolean asignarMesaAMozo(Integer dniMozo, Integer numeroMesa) {
+
+		Boolean fueAsignada = false;
 
 		Mozo mozoEncontrado = buscarMozoPorDni(dniMozo);
 		Mesa mesaEncontrada = buscarMesaPorId(numeroMesa);
-		
-		 HashSet<Mesa> mesasAsignadas = new HashSet<>();
-			
-		if(mozoEncontrado!=null && mesaEncontrada!=null ) {
-			
-			mesasAsignadas.add(mesaEncontrada);
-			mozoEncontrado.setMesa(mesasAsignadas);
+
+		if (mozoEncontrado != null && mesaEncontrada != null) {
+			mozoEncontrado.agregarMesa(mesaEncontrada);
+			fueAsignada = true;
 		}
-		
-		
-		
+
+		return fueAsignada;
 	}
 
 	private Mesa buscarMesaPorId(Integer mesaID) {
@@ -62,7 +69,8 @@ public class Restaurante {
 	}
 
 	public boolean ingresaMozo(Mozo mozo, Mozo mozoNuevo) {
-	    return mozo.getTurno().equals(mozoNuevo.getTurno());
+		return mozo.getTurno().equals(mozoNuevo.getTurno());
 	}
+
+
 }
-	
