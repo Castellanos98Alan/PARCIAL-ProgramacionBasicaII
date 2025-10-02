@@ -14,6 +14,21 @@ private String turno;
 		
 	}
 
+	
+	   
+	    int id;
+
+	    public Mozo(Integer dni, String nombre, String turno) {
+	        this.dni = dni;
+	        this.nombre = nombre;
+	        this.turno = turno;
+	    }
+
+	    @Override
+	    public String toString() {
+	        return "Mozo dni: " + dni + " - Nombre: " + nombre + " - Turno: "+ turno;
+	    }
+	
 
 
 	public String getNombre() {
