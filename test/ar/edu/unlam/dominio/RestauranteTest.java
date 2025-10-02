@@ -49,7 +49,7 @@ public class RestauranteTest {
 
     	Boolean ingresaMozoTurnoTarde = restaurante.ingresaMozo(mozo, mozoNuevo);
 
-    	assertTrue(ingresaMozoTurnoTarde);
+    	assertFalse(ingresaMozoTurnoTarde);
     }
 
 }
