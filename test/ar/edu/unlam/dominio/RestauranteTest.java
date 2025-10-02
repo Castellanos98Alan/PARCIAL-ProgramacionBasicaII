@@ -2,8 +2,12 @@ package ar.edu.unlam.dominio;
 
 import static org.junit.Assert.assertFalse;
 
+import static org.junit.Assert.assertTrue;
+
+
 import org.junit.Before;
 import org.junit.Test;
+
 
 
 public class RestauranteTest {
@@ -26,7 +30,7 @@ public class RestauranteTest {
 		Integer numeroMesa2 = 2;
 		Mesa mesa2 = new Mesa(numeroMesa2);
 		
-		Persona mozo = new Mozo(nombre,DNI);
+		Persona mozo = new Mozo(nombre,DNI,"mañana");
 		
 		restaurante.agregarMozo((Mozo)mozo);
 		restaurante.agregarMesa(mesa1);
@@ -49,11 +53,19 @@ public class RestauranteTest {
 		//restaurante.agregarCliente(cliente);
 	}
 	
+	 @Test
+	    public void dadoQueExisteUnTurnoElMozoTurnoTardeNoDebeIngresarTurnoMediodia() {
+	    	Mozo mozo = new Mozo("Alexis", 4205584, "Mañana");
+	    	Mozo mozoNuevo = new Mozo("Alexis", 4205584, "Tarde");
+
+	    	Boolean ingresaMozoTurnoTarde = restaurante.ingresaMozo(mozo, mozoNuevo);
+
+	    	assertFalse(ingresaMozoTurnoTarde);
+	    }
 	
-	@Test
-	public void dadoQueExisteUnTurnoElMozoTurnoTardeNoDebeIngresarTurnoMediodia() {
-	
-		
-	}
-	
+
+
+
+
 }
+

@@ -1,5 +1,6 @@
 package ar.edu.unlam.dominio;
 
+
 import java.util.HashSet;
 
 public class Restaurante {
@@ -16,14 +17,22 @@ public class Restaurante {
 		this.mozos.add(mozo);
 
 	}
+	public void agregarMesa(Mesa mesa) {
+		this.mesas.add(mesa);
+
+	}
 
 	public void asignarMesaAMozo(Integer dniMozo, Integer numeroMesa) {
 
 		Mozo mozoEncontrado = buscarMozoPorDni(dniMozo);
 		Mesa mesaEncontrada = buscarMesaPorId(numeroMesa);
 		
+		 HashSet<Mesa> mesasAsignadas = new HashSet<>();
+			
 		if(mozoEncontrado!=null && mesaEncontrada!=null ) {
-			mozoEncontrado.setMesa(mesaEncontrada);
+			
+			mesasAsignadas.add(mesaEncontrada);
+			mozoEncontrado.setMesa(mesasAsignadas);
 		}
 		
 		
@@ -52,8 +61,8 @@ public class Restaurante {
 		return mozoEncontrado;
 	}
 
-	public void agregarMesa(Mesa mesa1) {
-		this.mesas.add(mesa1);
-		
+	public boolean ingresaMozo(Mozo mozo, Mozo mozoNuevo) {
+	    return mozo.getTurno().equals(mozoNuevo.getTurno());
 	}
 }
+	

@@ -18,9 +18,13 @@ public class Mesa {
 
 	public void agregarMesa(Mesa mesa1) {
 		this.mesas.add(mesa1);
-		
 	}
 	
+	
+	public HashSet<Mesa> getMesas() {
+		return mesas;
+	}
+
 	@Override
 	public String toString() {
 		return "Mesa [numeroMesa=" + numeroMesa + "]";
