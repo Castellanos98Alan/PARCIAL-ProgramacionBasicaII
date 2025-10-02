@@ -3,6 +3,7 @@ package ar.edu.unlam.interfaz;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+import ar.edu.unlam.dominio.Cliente;
 import ar.edu.unlam.dominio.Mozo;
 
 

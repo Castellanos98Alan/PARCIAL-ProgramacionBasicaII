@@ -7,16 +7,7 @@ private String turno;
 	
 	
 	
-	public Mozo(String nombre, Integer dni, String turno) {
-		this.nombre = nombre;
-		this.dni = dni;
-		this.turno = turno;
-		
-	}
-
 	
-	   
-	    int id;
 
 	    public Mozo(Integer dni, String nombre, String turno) {
 	        this.dni = dni;

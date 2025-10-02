@@ -1,9 +1,9 @@
-package ar.edu.unlam.interfaz;
+package ar.edu.unlam.dominio;
 
-class Cliente {
-    String nombre;
+public class Cliente {
+    public String nombre;
     int mesa;
-    double cuenta;
+    public double cuenta;
 
     public Cliente(String nombre, int mesa) {
         this.nombre = nombre;
