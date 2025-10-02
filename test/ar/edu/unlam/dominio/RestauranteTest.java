@@ -24,6 +24,8 @@ public class RestauranteTest {
 
         String nombre = "";
         Integer DNI = 40589410;
+        Mesa mesa1 = new Mesa(numeroMesa1, cantidadPersonasMax1);
+        Mesa mesa2 = new Mesa(numeroMesa2, cantidadPersonasMax2);
 
         Persona mozo = new Mozo(nombre,DNI,mesa1,mesa2);
 
