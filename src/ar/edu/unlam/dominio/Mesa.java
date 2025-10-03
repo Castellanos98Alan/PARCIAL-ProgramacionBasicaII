@@ -6,10 +6,12 @@ public class Mesa {
 
 	private Integer numeroMesa;
 	private HashSet<Mesa> mesas;
+	private HashSet<Pedido> pedidos;
 
 	public Mesa(Integer numeroMesa) {
 		this.numeroMesa = numeroMesa;
 		mesas = new HashSet<>();
+		pedidos = new HashSet<>();
 	}
 
 	public Integer getNumeroMesa() {
@@ -19,8 +21,7 @@ public class Mesa {
 	public void agregarMesa(Mesa mesa1) {
 		this.mesas.add(mesa1);
 	}
-	
-	
+
 	public HashSet<Mesa> getMesas() {
 		return mesas;
 	}
@@ -28,6 +29,10 @@ public class Mesa {
 	@Override
 	public String toString() {
 		return "Mesa [numeroMesa=" + numeroMesa + "]";
+	}
+
+	public void asignarPedido(Pedido pedido) {
+		pedidos.add(pedido);
 	}
 
 }

@@ -67,6 +67,7 @@ public class RestauranteTest {
 	public void dadoQueElRestauranteTieneUnClienteEsteUltimoRealizaSuPedido() {
 		assertTrue(restaurante.agregarCliente((Cliente) cliente1));
 
+		// Integer id = 1;
 		String nombrePlato = "Fideos";
 		Double precioPlato = 500.0;
 		Double precioBaseCubiertos = 100.0;
@@ -80,17 +81,19 @@ public class RestauranteTest {
 		Double precioBebida = 50.0;
 		String tamanio = "mediana";// puede ser pequeño o mediano
 		Producto bebida = new Bebida(nombreBebida, precioBebida, tamanio);
-		
+
 		Double precioFinal = precioPlato + precioPostre + precioBebida;
-		
+
 		Pedido pedido = new Pedido(platoPrincipal, bebida, postre, precioFinal);
 		assertTrue(restaurante.agregarPedido(((Cliente) cliente1).realizarPedido(pedido)));
-		
+
 	}
+
 	@Test
 	public void dadoQueElRestauranteTieneUnClienteEsteUltimoRealizaSuPedidoYSeCalculaElPrecioTotal() {
 		assertTrue(restaurante.agregarCliente((Cliente) cliente1));
 
+		// Integer id = 1;
 		String nombrePlato = "Fideos";
 		Double precioPlato = 500.0;
 		Double precioBaseCubiertos = 100.0;
@@ -104,16 +107,47 @@ public class RestauranteTest {
 		Double precioBebida = 50.0;
 		String tamanio = "mediana";// puede ser pequeño o mediano
 		Producto bebida = new Bebida(nombreBebida, precioBebida, tamanio);
-		
+
 		Double precioFinal = 0.0;
-		//Double precioFinal = bebida.calcularPrecio() + postre.calcularPrecio() + platoPrincipal.calcularPrecio();
-		
+		// Double precioFinal = bebida.calcularPrecio() + postre.calcularPrecio() +
+		// platoPrincipal.calcularPrecio();
+
 		Pedido pedido = new Pedido(platoPrincipal, bebida, postre, precioFinal);
 		assertTrue(restaurante.agregarPedido(((Cliente) cliente1).realizarPedido(pedido)));
 	}
 
 	@Test
 	public void dadoQueElRestauranteTieneUnClienteEsteUltimoRealizaSuPedidoYSeAsignaAUnMozo() {
-		
+		assertTrue(restaurante.agregarCliente((Cliente) cliente1));
+
+		assertTrue(restaurante.agregarMozo((Mozo) mozo1));
+
+		assertTrue(restaurante.agregarMesa(mesa1));
+
+		// asignar mesa a mozo
+		assertTrue(restaurante.asignarMesaAMozo(mozo1.getDni(), mesa1.getNumeroMesa()));
+
+		// pedido
+		String nombrePlato = "Fideos";
+		Double precioPlato = 500.0;
+		Double precioBaseCubiertos = 100.0;
+		Producto platoPrincipal = new PlatoPrincipal(nombrePlato, precioPlato, precioBaseCubiertos);
+
+		String nombrePostre = "Tiramisu";
+		Double precioPostre = 100.0;
+		Producto postre = new Postre(nombrePostre, precioPostre);
+
+		String nombreBebida = "Coca";
+		Double precioBebida = 50.0;
+		String tamanio = "mediana";
+		Producto bebida = new Bebida(nombreBebida, precioBebida, tamanio);
+
+		Double precioFinal = 0.0;
+
+		Pedido pedido1 = new Pedido(platoPrincipal, bebida, postre, precioFinal);
+		assertTrue(restaurante.agregarPedido(((Cliente) cliente1).realizarPedido(pedido1)));
+
+		// asignar pedido a mesa
+		assertTrue(restaurante.asignarPedidoAMesa(pedido1.getIdPedido(), mesa1.getNumeroMesa()));
 	}
 }

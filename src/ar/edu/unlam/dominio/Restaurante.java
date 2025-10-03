@@ -31,6 +31,7 @@ public class Restaurante {
 	public Boolean agregarPedido(Pedido pedido) {
 		return this.pedidos.add(pedido);
 	}
+
 	public Boolean asignarMesaAMozo(Integer dniMozo, Integer numeroMesa) {
 
 		Boolean fueAsignada = false;
@@ -72,5 +73,30 @@ public class Restaurante {
 		return mozo.getTurno().equals(mozoNuevo.getTurno());
 	}
 
+	public boolean asignarPedidoAMesa(Integer pedidoId, Integer mesaId) {
+		Boolean fueAsignado = false;
+
+		Mesa mesaEncontrada = buscarMesaPorId(mesaId);
+		Pedido pedidoEncontrado = buscarPedidoPorId(pedidoId);
+
+		if (mesaEncontrada != null && pedidoEncontrado != null) {
+			mesaEncontrada.asignarPedido(pedidoEncontrado);
+			fueAsignado = true;
+		}
+		return fueAsignado;
+	}
+
+	private Pedido buscarPedidoPorId(Integer pedidoId) {
+
+		Pedido pedidoEncontrado = null;
+
+		for (Pedido pedidoFor : pedidos) {
+			if (pedidoFor.getIdPedido().equals(pedidoId)) {
+				pedidoEncontrado = pedidoFor;
+			}
+		}
+
+		return pedidoEncontrado;
+	}
 
 }
