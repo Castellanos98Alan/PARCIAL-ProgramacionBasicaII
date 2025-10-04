@@ -7,14 +7,14 @@ public class Pedido {
 	private Producto platoPrincipal;
 	private Producto bebida;
 	private Producto postre;
-	private Double precioFinal;
+	private Double montoTotal;
 
-	public Pedido(Producto platoPrincipal, Producto bebida, Producto postre, Double precioFinal) {
+	public Pedido(Producto platoPrincipal, Producto bebida, Producto postre, Double montoTotal) {
 		this.id = ++contadorId;
 		this.platoPrincipal = platoPrincipal;
 		this.bebida = bebida;
 		this.postre = postre;
-		this.precioFinal = precioFinal;
+		this.montoTotal = montoTotal;
 	}
 
 	@Override

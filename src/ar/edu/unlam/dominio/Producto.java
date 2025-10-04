@@ -1,6 +1,6 @@
 package ar.edu.unlam.dominio;
 
-public abstract class Producto {
+public abstract class Producto implements ICalcularPrecioFinal {
 
 	private String nombre;
 	private Double precio;
@@ -10,4 +10,12 @@ public abstract class Producto {
 		this.precio = precio;
 	}
 
+	public Double getPrecio() {
+		return precio;
+	}
+
+	public String getNombre() {
+		return nombre;
+	}
+	
 }

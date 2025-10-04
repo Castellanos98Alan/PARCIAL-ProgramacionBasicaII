@@ -1,5 +1,6 @@
 package ar.edu.unlam.dominio;
 
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 
 import static org.junit.Assert.assertTrue;
@@ -64,56 +65,65 @@ public class RestauranteTest {
 	}
 
 	@Test
+	public void dadoQueElRestauranteTieneUnClienteSeCalculaElMontoTotalDeLaConsumicion() {
+		assertTrue(restaurante.agregarCliente((Cliente) cliente1));
+
+		String nombrePlato = "Fideos";
+		Double precioPlato = 500.0;
+		Double precioBaseCubiertos = 100.0;
+		Producto platoPrincipal = new PlatoPrincipal(nombrePlato, precioPlato, precioBaseCubiertos);
+
+		String nombrePostre = "Tiramisu"; // 
+		String adicional = "Cafe"; // cafe - helado
+		Double precioPostre = 100.0;
+		Producto postre = new Postre(nombrePostre, precioPostre, adicional);
+
+		String nombreBebida = "Coca";
+		Double precioBebida = 50.0;
+		String tamanio = "grande";// puede ser pequeño o grande
+		Producto bebida = new Bebida(nombreBebida, precioBebida, tamanio);
+		
+		Double precioFinalEsperadoBebida = 45.0;
+		Double precioFinalObtenidoBebida = bebida.calcularPrecioFinal();
+		assertEquals(precioFinalEsperadoBebida, precioFinalObtenidoBebida);
+		
+		Double precioFinalEsperadoPostre = 120.0;
+		Double precioFinalObtenidoPostre = postre.calcularPrecioFinal();
+		assertEquals(precioFinalEsperadoPostre, precioFinalObtenidoPostre);
+		
+		Double precioFinalEsperadoPlatoPrincipal = 600.0;
+		Double precioFinalObtenidoPlatoPrincipal = platoPrincipal.calcularPrecioFinal();
+		assertEquals(precioFinalEsperadoPlatoPrincipal, precioFinalObtenidoPlatoPrincipal);
+		
+		Double montoTotalEsperado = 765.0;
+		Double montoTotalObtenido = bebida.calcularPrecioFinal() + postre.calcularPrecioFinal() + platoPrincipal.calcularPrecioFinal();
+		assertEquals(montoTotalEsperado, montoTotalObtenido);
+	}
+	
+	@Test
 	public void dadoQueElRestauranteTieneUnClienteEsteUltimoRealizaSuPedido() {
 		assertTrue(restaurante.agregarCliente((Cliente) cliente1));
 
-		// Integer id = 1;
 		String nombrePlato = "Fideos";
 		Double precioPlato = 500.0;
 		Double precioBaseCubiertos = 100.0;
 		Producto platoPrincipal = new PlatoPrincipal(nombrePlato, precioPlato, precioBaseCubiertos);
 
 		String nombrePostre = "Tiramisu";
+		String adicional = "Cafe"; // cafe - helado
 		Double precioPostre = 100.0;
-		Producto postre = new Postre(nombrePostre, precioPostre);
+		Producto postre = new Postre(nombrePostre, precioPostre, adicional);
 
 		String nombreBebida = "Coca";
 		Double precioBebida = 50.0;
-		String tamanio = "mediana";// puede ser pequeño o mediano
+		String tamanio = "grande";// puede ser pequeño o grande
 		Producto bebida = new Bebida(nombreBebida, precioBebida, tamanio);
-
-		Double precioFinal = precioPlato + precioPostre + precioBebida;
-
-		Pedido pedido = new Pedido(platoPrincipal, bebida, postre, precioFinal);
+		
+		Double montoTotal = bebida.calcularPrecioFinal() + postre.calcularPrecioFinal() + platoPrincipal.calcularPrecioFinal();
+		
+		Pedido pedido = new Pedido(platoPrincipal, bebida, postre, montoTotal);
 		assertTrue(restaurante.agregarPedido(((Cliente) cliente1).realizarPedido(pedido)));
-
-	}
-
-	@Test
-	public void dadoQueElRestauranteTieneUnClienteEsteUltimoRealizaSuPedidoYSeCalculaElPrecioTotal() {
-		assertTrue(restaurante.agregarCliente((Cliente) cliente1));
-
-		// Integer id = 1;
-		String nombrePlato = "Fideos";
-		Double precioPlato = 500.0;
-		Double precioBaseCubiertos = 100.0;
-		Producto platoPrincipal = new PlatoPrincipal(nombrePlato, precioPlato, precioBaseCubiertos);
-
-		String nombrePostre = "Tiramisu";
-		Double precioPostre = 100.0;
-		Producto postre = new Postre(nombrePostre, precioPostre);
-
-		String nombreBebida = "Coca";
-		Double precioBebida = 50.0;
-		String tamanio = "mediana";// puede ser pequeño o mediano
-		Producto bebida = new Bebida(nombreBebida, precioBebida, tamanio);
-
-		Double precioFinal = 0.0;
-		// Double precioFinal = bebida.calcularPrecio() + postre.calcularPrecio() +
-		// platoPrincipal.calcularPrecio();
-
-		Pedido pedido = new Pedido(platoPrincipal, bebida, postre, precioFinal);
-		assertTrue(restaurante.agregarPedido(((Cliente) cliente1).realizarPedido(pedido)));
+		
 	}
 
 	@Test
@@ -134,20 +144,21 @@ public class RestauranteTest {
 		Producto platoPrincipal = new PlatoPrincipal(nombrePlato, precioPlato, precioBaseCubiertos);
 
 		String nombrePostre = "Tiramisu";
+		String adicional = "Cafe"; // cafe - helado
 		Double precioPostre = 100.0;
-		Producto postre = new Postre(nombrePostre, precioPostre);
+		Producto postre = new Postre(nombrePostre, precioPostre, adicional);
 
 		String nombreBebida = "Coca";
 		Double precioBebida = 50.0;
-		String tamanio = "mediana";
+		String tamanio = "grande";// puede ser pequeño o mediano
 		Producto bebida = new Bebida(nombreBebida, precioBebida, tamanio);
-
-		Double precioFinal = 0.0;
-
-		Pedido pedido1 = new Pedido(platoPrincipal, bebida, postre, precioFinal);
-		assertTrue(restaurante.agregarPedido(((Cliente) cliente1).realizarPedido(pedido1)));
+		
+		Double montoTotal = bebida.calcularPrecioFinal() + postre.calcularPrecioFinal() + platoPrincipal.calcularPrecioFinal();
+		
+		Pedido pedido = new Pedido(platoPrincipal, bebida, postre, montoTotal);
+		assertTrue(restaurante.agregarPedido(((Cliente) cliente1).realizarPedido(pedido)));
 
 		// asignar pedido a mesa
-		assertTrue(restaurante.asignarPedidoAMesa(pedido1.getIdPedido(), mesa1.getNumeroMesa()));
+		assertTrue(restaurante.asignarPedidoAMesa(pedido.getIdPedido(), mesa1.getNumeroMesa()));
 	}
 }

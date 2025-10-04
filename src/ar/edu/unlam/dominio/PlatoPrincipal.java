@@ -1,6 +1,6 @@
 package ar.edu.unlam.dominio;
 
-public class PlatoPrincipal extends Producto {
+public class PlatoPrincipal extends Producto{
 
 	private Double precioBaseCubiertos;
 
@@ -8,6 +8,17 @@ public class PlatoPrincipal extends Producto {
 		super(nombre, precio);
 		this.precioBaseCubiertos = precioBaseCubiertos;
 		
+	}
+	
+	
+	public Double getPrecioBaseCubiertos() {
+		return precioBaseCubiertos;
+	}
+
+
+	@Override
+	public Double calcularPrecioFinal() {
+		return this.precioBaseCubiertos + super.getPrecio();
 	}
 
 }

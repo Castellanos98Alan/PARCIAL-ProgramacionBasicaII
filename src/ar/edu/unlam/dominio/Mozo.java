@@ -9,37 +9,29 @@ public class Mozo extends Persona {
 
 	public Mozo(String nombre, Integer dni, String turno) {
 		super(nombre, dni);
-	this.mesas = new HashSet<>();
-	this.turno = turno;
+		this.mesas = new HashSet<>();
+		this.turno = turno;
 	}
-
 
 	public void agregarMesa(Mesa mesa) {
 		this.mesas.add(mesa);
 
 	}
-	
 
 	public HashSet<Mesa> getMesas() {
 		return mesas;
 	}
 
-
-
 	@Override
 	public String toString() {
-		return "Mozo [mesa=" + mesas + ", getDni()=" + getDni() ;
-		}
-
-
+		return "Mozo [mesa=" + mesas + ", getDni()=" + getDni();
+	}
 
 	public String getTurno() {
 		return turno;
 	}
 
-
-
 	public void setTurno(String turno) {
 		this.turno = turno;
-}
 	}
+}
