@@ -5,6 +5,8 @@ import static org.junit.Assert.assertFalse;
 
 import static org.junit.Assert.assertTrue;
 
+import java.time.LocalDateTime;
+
 import org.junit.Before;
 import org.junit.Test;
 
@@ -150,7 +152,7 @@ public class RestauranteTest {
 
 		String nombreBebida = "Coca";
 		Double precioBebida = 50.0;
-		String tamanio = "grande";// puede ser pequeño o mediano
+		String tamanio = "grande";// puede ser pequeño o grande
 		Producto bebida = new Bebida(nombreBebida, precioBebida, tamanio);
 		
 		Double montoTotal = bebida.calcularPrecioFinal() + postre.calcularPrecioFinal() + platoPrincipal.calcularPrecioFinal();
@@ -160,5 +162,25 @@ public class RestauranteTest {
 
 		// asignar pedido a mesa
 		assertTrue(restaurante.asignarPedidoAMesa(pedido.getIdPedido(), mesa1.getNumeroMesa()));
+	}
+	
+	@Test
+	public void dadoQueExisteUnRestauranteSeRegistraQueEmpiezaElCambioDeTurnosEntreMozos() {
+		assertTrue(restaurante.agregarMozo((Mozo) mozo1));
+		assertTrue(restaurante.agregarMozo((Mozo) mozo2));
+		
+		// Asignar horario de Fin de turno del mozo1, y Comienzo del turno de mozo2
+		// MOZO 1 --> 11HS - 17HS
+		LocalDateTime finTurnoMozo1 = LocalDateTime.of(2025, 10, 3, 17, 0, 0);
+		
+		// MOZO 2 --> 17HS - 23HS
+		LocalDateTime comienzoTurnoMozo2 = LocalDateTime.of(2025, 10, 3, 17, 0, 0);
+		
+		((Mozo) mozo1).setFinTurno(finTurnoMozo1);
+		((Mozo) mozo2).setComienzoTurno(comienzoTurnoMozo2);
+	
+		Boolean seRegistroCambio = restaurante.cambiarTurnoMozos(((Mozo) mozo1), ((Mozo) mozo2));
+		
+		assertTrue(seRegistroCambio);
 	}
 }

@@ -69,11 +69,8 @@ public class Restaurante {
 		return mozoEncontrado;
 	}
 
-	public boolean ingresaMozo(Mozo mozo, Mozo mozoNuevo) {
-		return mozo.getTurno().equals(mozoNuevo.getTurno());
-	}
 
-	public boolean asignarPedidoAMesa(Integer pedidoId, Integer mesaId) {
+	public Boolean asignarPedidoAMesa(Integer pedidoId, Integer mesaId) {
 		Boolean fueAsignado = false;
 
 		Mesa mesaEncontrada = buscarMesaPorId(mesaId);
@@ -95,8 +92,14 @@ public class Restaurante {
 				pedidoEncontrado = pedidoFor;
 			}
 		}
-
 		return pedidoEncontrado;
 	}
 
+	public Boolean cambiarTurnoMozos(Mozo mozo, Mozo mozoNuevo) {
+		Boolean seCambio = false;
+		if (mozo.getFinTurno().equals(mozoNuevo.getComienzoTurno())) {
+			seCambio = true;
+		}
+		return seCambio;
+	}
 }
